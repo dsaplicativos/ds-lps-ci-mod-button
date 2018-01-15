@@ -104,7 +104,7 @@ class ActionButton {
         $this->url = $url;
         $this->largeIcon = $largeIcon;
         $this->color = $color;
-        $this->confirmation = $confirm;
+        $this->confirm = $confirm;
     }
 
     /**
@@ -170,7 +170,7 @@ class ActionButton {
      * @return string
      */
     private function getConfirmation() {
-        return $this->confirmation == true ? 'onclick=\'return confirm("' . $this->confirmationMessage . '"); return false;\'' : '';
+        return $this->confirm == true ? 'onclick=\'return confirm("' . $this->confirmationMessage . '"); return false;\'' : '';
     }
 
     /**
