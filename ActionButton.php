@@ -41,10 +41,16 @@ class ActionButton {
     private $color;
 
     /**
-     * Define se o botão será utilizado para exclusão de itens
+     * Define se o clique deverá ser confirmado
      * @var bool
      */
-    private $remove;
+    private $confirm;
+
+    /**
+     * Recebe o texto de confirmação exibido no alerta, em javascript
+     * @var string
+     */
+    private $confirmationMessage;
 
 
     /**
@@ -90,15 +96,15 @@ class ActionButton {
      * @param string $url
      * @param bool $largeIcon
      * @param string $color
-     * @param bool $remove
+     * @param bool $confirm
      */
-    public function __construct($icon, $url, $largeIcon = false, $color = '#000', $remove = false)
+    public function __construct($icon, $url, $largeIcon = false, $color = '#000', $confirm = false)
     {
         $this->icon = $icon;
         $this->url = $url;
         $this->largeIcon = $largeIcon;
         $this->color = $color;
-        $this->remove = $remove;
+        $this->confirmation = $confirm;
     }
 
     /**
@@ -106,8 +112,8 @@ class ActionButton {
      * @param string $item_name
      * @return string
      */
-    public function getHTML($item_name = null) {
-        return $this->getA($item_name) . $this->getIcon() . '</a>';
+    public function getHTML() {
+        return $this->getA() . $this->getIcon() . '</a>';
     }
 
     /**
@@ -127,13 +133,21 @@ class ActionButton {
     }
 
     /**
+     * Define a mensagem de confirmação exibida no alerta
+     * @param $message
+     */
+    public function setConfirmationMessage($message) {
+        $this->confirmationMessage = $message;
+    }
+
+    /**
      * Retorna o código HTML do link
      * @param string $item_name
      * @return string
      */
-    private function getA($item_name) {
+    private function getA() {
         return '<a class="m-0 mx-auto d-block" href="' . base_url($this->url) . '" style="color: ' . $this->color . ' !important;" '
-            . $this->getRemove($item_name)
+            . $this->getConfirmation()
             . $this->popover()
             . '>';
     }
@@ -153,11 +167,10 @@ class ActionButton {
 
     /**
      * Retorna a confirmação em javascript após o clique
-     * @param string $item_name
      * @return string
      */
-    private function getRemove($item_name) {
-        return $this->remove == true ? 'onclick=\'return confirm("Excluir: ' . $item_name . '?"); return false;\'' : '';
+    private function getConfirmation() {
+        return $this->confirmation == true ? 'onclick=\'return confirm("' . $this->confirmationMessage . '"); return false;\'' : '';
     }
 
     /**
