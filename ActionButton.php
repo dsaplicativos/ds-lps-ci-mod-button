@@ -90,6 +90,8 @@ class ActionButton {
      */
     private $popoverHtml;
 
+    private $modal;
+
     /**
      * ActionButton constructor.
      * @param string $icon
@@ -97,14 +99,16 @@ class ActionButton {
      * @param bool $largeIcon
      * @param string $color
      * @param bool $confirm
+     * @param bool $modal
      */
-    public function __construct($icon, $url, $largeIcon = false, $color = '#000', $confirm = false)
+    public function __construct($icon, $url, $largeIcon = false, $color = '#000', $confirm = false, $modal = false)
     {
         $this->icon = $icon;
         $this->url = $url;
         $this->largeIcon = $largeIcon;
         $this->color = $color;
         $this->confirm = $confirm;
+        $this->modal = $modal;
     }
 
     /**
@@ -146,7 +150,7 @@ class ActionButton {
      * @return string
      */
     private function getA() {
-        return '<a class="m-0 mx-auto d-block" href="' . base_url($this->url) . '" style="color: ' . $this->color . ' !important;" '
+        return '<a class="m-0 mx-auto d-block" ' . (($this->modal) ? 'data-toggle="modal" data-target="#' . $this->url . '"' : 'href="' . base_url($this->url)) . '"' . 'style="color: ' . $this->color . ' !important;" '
             . $this->getConfirmation()
             . $this->popover()
             . '>';
