@@ -90,7 +90,17 @@ class ActionButton {
      */
     private $popoverHtml;
 
+    /**
+     * Condição para botão que abre modal
+     * @var bool
+     */
     private $modal;
+
+    /**
+     * Condição para botão não clicável
+     * @var bool
+     */
+    private $nonClickable = false;
 
     /**
      * ActionButton constructor.
