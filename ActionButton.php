@@ -154,12 +154,19 @@ class ActionButton {
     }
 
     /**
+     * Define se o botão será ou não clicável
+     * @param bool $clickable
+     */
+    public function setNonClickable($clickable) {
+        $this->nonClickable = $clickable;
+    }
+
+    /**
      * Retorna o código HTML do link
-     * @param string $item_name
      * @return string
      */
     private function getA() {
-        return '<a class="m-0 mx-auto d-block" ' . (($this->modal) ? 'data-toggle="modal" data-target="#' . $this->url . '"' : 'href="' . base_url($this->url)) . '"' . 'style="color: ' . $this->color . ' !important;" '
+        return '<' . ($this->nonClickable ? 'span' : 'a') . ' class="m-0 mx-auto d-block" ' . (($this->modal) ? 'data-toggle="modal" data-target="#' . $this->url . '"' : 'href="' . base_url($this->url)) . '"'
             . $this->getConfirmation()
             . $this->popover()
             . '>';
