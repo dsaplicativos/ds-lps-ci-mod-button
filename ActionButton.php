@@ -198,7 +198,7 @@ class ActionButton {
      * @return string
      */
     private function getIcon() {
-        return '<i class="my-2 mx-2 fa ' . $this->icon . ($this->largeIcon == true ? ' fa-lg' : '') . '"></i>';
+        return '<i class="my-2 mx-2 fa ' . $this->icon . ($this->largeIcon == true ? ' fa-lg' : '') . '" style="color: ' . $this->color . ' !important;"></i>';
     }
 
 }
