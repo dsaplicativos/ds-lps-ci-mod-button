@@ -123,11 +123,10 @@ class ActionButton {
 
     /**
      * Gera o código HTML final do botão
-     * @param string $item_name
      * @return string
      */
     public function getHTML() {
-        return $this->getA() . $this->getIcon() . '</a>';
+        return $this->getA() . $this->getIcon() . ($this->nonClickable ? '</span>' : '</a>');
     }
 
     /**
