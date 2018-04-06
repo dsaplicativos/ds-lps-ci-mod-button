@@ -168,7 +168,6 @@ class ActionButton {
     private function getA() {
         return '<' . ($this->nonClickable ? 'span' : 'a') . ' class="m-0 mx-auto d-block" ' . (($this->modal) ? 'data-toggle="modal" data-target="#' . $this->url . '"' : 'href="' . base_url($this->url)) . '"'
             . $this->getConfirmation()
-            . $this->popover()
             . '>';
     }
 
@@ -198,7 +197,7 @@ class ActionButton {
      * @return string
      */
     private function getIcon() {
-        return '<i class="my-2 mx-2 fa ' . $this->icon . ($this->largeIcon == true ? ' fa-lg' : '') . '" style="color: ' . $this->color . ' !important;"></i>';
+        return '<i ' . $this->popover() . ' class="my-2 mx-2 fa ' . $this->icon . ($this->largeIcon == true ? ' fa-lg' : '') . '" style="color: ' . $this->color . ' !important;"></i>';
     }
 
 }
